@@ -5,13 +5,13 @@ Requires at least: 3.0
 Tested up to: 3.7
 Stable tag: 1.0.0
 
-Allow IP addresses to access content through IssueM's Leaky Paywall. More info at http://issuem.com
+Allow IP addresses to access content through IssueM's Leaky Paywall. More info at http://LeakyPW.com
 
 == Description ==
 
 Allows publishers to add IP address ranges to IssueM's Leaky Paywall. The IP addresses will allow visitors from those IP's to view articles and posts without having to subscribe.
 Perfect for giving unioversities or corporate customers and easy way to give access to you publication.
-More info at http://issuem.com
+More info at http://LeakyPW.com
 
 == Installation ==
 
