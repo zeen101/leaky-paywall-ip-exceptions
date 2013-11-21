@@ -10,7 +10,7 @@ Allow IP addresses to access content through IssueM's Leaky Paywall. More info a
 == Description ==
 
 Allows publishers to add IP address ranges to IssueM's Leaky Paywall. The IP addresses will allow visitors from those IP's to view articles and posts without having to subscribe.
-Perfect for giving unioversities or corporate customers and easy way to give access to you publication.
+Perfect for giving universities or corporate customers and easy way to give access to you publication.
 More info at http://LeakyPW.com
 
 == Installation ==
