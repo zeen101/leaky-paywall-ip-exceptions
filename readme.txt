@@ -1,15 +1,17 @@
-=== IssueM - Leaky Paywall - IP Exceptions ===
-Contributors: layotte
-Tags: magazine, issue, manager, paywall, leaky
+=== IssueM - Leaky Paywall - IP Exceptions Addon ===
+Contributors: layotte, peterericson
+Tags: ip address, exceptions, news, magazine, paywall, metered, university, corporate, access
 Requires at least: 3.0
 Tested up to: 3.7
 Stable tag: 1.0.0
 
-Allow IP addresses to access content through IssueM's Leaky Paywall. More info at http://issuem.com
+Allow IP addresses to access content through IssueM's Leaky Paywall. More info at http://LeakyPW.com
 
 == Description ==
 
-Allow IP addresses to access content through IssueM's Leaky Paywall. More info at http://issuem.com
+Allows publishers to add IP address ranges to IssueM's Leaky Paywall. The IP addresses will allow visitors from those IP's to view articles and posts without having to subscribe.
+Perfect for giving universities or corporate customers and easy way to give access to you publication.
+More info at http://LeakyPW.com
 
 You can follow this plugins development on [GitHub](https://github.com/IssueM/issuem-leaky-paywall-ip-exceptions)
 
@@ -20,7 +22,7 @@ You can follow this plugins development on [GitHub](https://github.com/IssueM/is
 
 == Frequently Asked Questions ==
 
-= What are the minimum requirements for IssueM's Leaky Paywall - IP Exceptions? =
+= What are the minimum requirements for IssueM's Leaky Paywall - IP Exceptions Addon? =
 
 You must have:
 
