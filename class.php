@@ -15,10 +15,6 @@ if ( ! class_exists( 'IssueM_Leaky_Paywall_IP_Exceptions' ) ) {
 	
 	class IssueM_Leaky_Paywall_IP_Exceptions {
 		
-		private $plugin_name	= ISSUEM_LP_IPE_NAME;
-		private $plugin_slug	= ISSUEM_LP_IPE_SLUG;
-		private $basename		= ISSUEM_LP_IPE_BASENAME;
-		
 		/**
 		 * Class constructor, puts things in motion
 		 *

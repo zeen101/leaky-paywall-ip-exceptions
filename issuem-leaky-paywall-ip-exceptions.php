@@ -23,7 +23,7 @@ if ( !defined( 'ISSUEM_STORE_URL' ) )
 define( 'ISSUEM_LP_IPE_NAME', 		'Leaky Paywall - IP Exceptions' );
 define( 'ISSUEM_LP_IPE_SLUG', 		'issuem-leaky-paywall-ip-exceptions' );
 define( 'ISSUEM_LP_IPE_VERSION', 	'1.0.0' );
-define( 'ISSUEM_LP_IPE_DB_VERSION', '1.0.0' );
+define( 'ISSUEM_LP_IPE_DB_VERSION', 	'1.0.0' );
 define( 'ISSUEM_LP_IPE_URL', 		plugin_dir_url( __FILE__ ) );
 define( 'ISSUEM_LP_IPE_PATH', 		plugin_dir_path( __FILE__ ) );
 define( 'ISSUEM_LP_IPE_BASENAME', 	plugin_basename( __FILE__ ) );

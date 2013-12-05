@@ -11,6 +11,8 @@ Allow IP addresses to access content through IssueM's Leaky Paywall. More info a
 
 Allow IP addresses to access content through IssueM's Leaky Paywall. More info at http://issuem.com
 
+You can follow this plugins development on [GitHub](https://github.com/IssueM/issuem-leaky-paywall-ip-exceptions)
+
 == Installation ==
 
 1. Upload the entire `issuem-leaky-paywall` folder to your `/wp-content/plugins/` folder.
