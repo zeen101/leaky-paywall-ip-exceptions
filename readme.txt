@@ -2,7 +2,7 @@
 Contributors: layotte, peterericson
 Tags: ip address, exceptions, news, magazine, paywall, metered, university, corporate, access
 Requires at least: 3.0
-Tested up to: 3.7
+Tested up to: 3.9
 Stable tag: 1.0.0
 
 Allow IP addresses to access content through IssueM's Leaky Paywall. More info at http://LeakyPW.com
