@@ -8,17 +8,17 @@
  
 /*
 Plugin Name: IssueM's Leaky Paywall - IP Exceptions
-Plugin URI: http://issuem.com/
+Plugin URI: http://zeen101.com/
 Description: A premium leaky paywall add-on for WordPress and IssueM.
 Author: IssueM Development Team
 Version: 1.0.0
-Author URI: http://issuem.com/
+Author URI: http://zeen101.com/
 Tags:
 */
 
 //Define global variables...
-if ( !defined( 'ISSUEM_STORE_URL' ) )
-	define( 'ISSUEM_STORE_URL',				'http://issuem.com' );
+if ( !defined( 'ZEEN101_STORE_URL' ) )
+	define( 'ZEEN101_STORE_URL',	'http://zeen101.com' );
 	
 define( 'ISSUEM_LP_IPE_NAME', 		'Leaky Paywall - IP Exceptions' );
 define( 'ISSUEM_LP_IPE_SLUG', 		'issuem-leaky-paywall-ip-exceptions' );
