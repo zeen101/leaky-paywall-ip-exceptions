@@ -3,7 +3,7 @@ Contributors: layotte, peterericson
 Tags: ip address, exceptions, news, magazine, paywall, metered, university, corporate, access
 Requires at least: 3.0
 Tested up to: 3.9
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 
 Allow IP addresses to access content through zeen101's Leaky Paywall. More info at http://zeen101.com
 
@@ -35,6 +35,9 @@ You must have:
 * Leaky Paywall - IP Exceptions Addon is GPL
 
 == Changelog ==
+= 1.0.1 =
+* Removing old references to IssueM
+
 = 1.0.0 =
 * Initial Release
 
