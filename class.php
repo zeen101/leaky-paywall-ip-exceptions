@@ -1,8 +1,8 @@
 <?php
 /**
- * Registers IssueM's Leaky Paywall class
+ * Registers zeen101's Leaky Paywall class
  *
- * @package IssueM's Leaky Paywall
+ * @package Leaky Paywall - IP Exceptions
  * @since 1.0.0
  */
 
@@ -11,9 +11,9 @@
  *
  * @since 1.0.0
  */
-if ( ! class_exists( 'IssueM_Leaky_Paywall_IP_Exceptions' ) ) {
+if ( ! class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
 	
-	class IssueM_Leaky_Paywall_IP_Exceptions {
+	class Leaky_Paywall_IP_Exceptions {
 		
 		/**
 		 * Class constructor, puts things in motion
@@ -87,7 +87,7 @@ if ( ! class_exists( 'IssueM_Leaky_Paywall_IP_Exceptions' ) ) {
 		}
 		
 		/**
-		 * Get IssueM's Leaky Paywall - IP Exceptions options
+		 * Get zeen101's Leaky Paywall - IP Exceptions options
 		 *
 		 * @since 1.0.0
 		 */
@@ -106,7 +106,7 @@ if ( ! class_exists( 'IssueM_Leaky_Paywall_IP_Exceptions' ) ) {
 		}
 		
 		/**
-		 * Update IssueM's Leaky Paywall options
+		 * Update zeen101's Leaky Paywall options
 		 *
 		 * @since 1.0.0
 		 */
@@ -117,7 +117,7 @@ if ( ! class_exists( 'IssueM_Leaky_Paywall_IP_Exceptions' ) ) {
 		}
 		
 		/**
-		 * Create and Display IssueM settings page
+		 * Create and Display settings page
 		 *
 		 * @since 1.0.0
 		 */

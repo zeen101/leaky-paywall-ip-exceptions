@@ -1,6 +1,6 @@
 <?php
 /**
- * @package IssueM's Leaky Paywall - IP Exceptions
+ * @package Leaky Paywall - IP Exceptions
  * @since 1.0.0
  */
  

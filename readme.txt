@@ -1,38 +1,38 @@
-=== IssueM - Leaky Paywall - IP Exceptions Addon ===
+===  Leaky Paywall - IP Exceptions ===
 Contributors: layotte, peterericson
 Tags: ip address, exceptions, news, magazine, paywall, metered, university, corporate, access
 Requires at least: 3.0
 Tested up to: 3.9
 Stable tag: 1.0.0
 
-Allow IP addresses to access content through IssueM's Leaky Paywall. More info at http://LeakyPW.com
+Allow IP addresses to access content through zeen101's Leaky Paywall. More info at http://zeen101.com
 
 == Description ==
 
-Allows publishers to add IP address ranges to IssueM's Leaky Paywall. The IP addresses will allow visitors from those IP's to view articles and posts without having to subscribe.
+Allows publishers to add IP address ranges to zeen101's Leaky Paywall. The IP addresses will allow visitors from those IP's to view articles and posts without having to subscribe.
 Perfect for giving universities or corporate customers and easy way to give access to you publication.
-More info at http://LeakyPW.com
+More info at http://zeen101.com
 
-You can follow this plugins development on [GitHub](https://github.com/IssueM/issuem-leaky-paywall-ip-exceptions)
+You can follow this plugins development on [GitHub](https://github.com/zeen101/leaky-paywall-ip-exceptions)
 
 == Installation ==
 
-1. Upload the entire `issuem-leaky-paywall` folder to your `/wp-content/plugins/` folder.
+1. Upload the entire `leaky-paywall-ip-exceptions` folder to your `/wp-content/plugins/` folder.
 1. Go to the 'Plugins' page in the menu and activate the plugin.
 
 == Frequently Asked Questions ==
 
-= What are the minimum requirements for IssueM's Leaky Paywall - IP Exceptions Addon? =
+= What are the minimum requirements for zeen101's Leaky Paywall - IP Exceptions? =
 
 You must have:
 
 * WordPress 3.3 or later
 * PHP 5
-* IssueM's Leaky Paywall version 1.1.0 or later
+* zeen101's Leaky Paywall version 1.1.0 or later
 
-= How is IssueM's Leaky Paywall Licensed? =
+= How is Leaky Paywall - IP Exceptions Licensed? =
 
-* Like IssueM, Leaky Paywall is GPL
+* Leaky Paywall - IP Exceptions Addon is GPL
 
 == Changelog ==
 = 1.0.0 =
@@ -40,7 +40,7 @@ You must have:
 
 == License ==
 
-IssueM - Leaky Paywall - IP Exceptions
+Leaky Paywall - IP Exceptions
 Copyright (C) 2011 The Complete Website, LLC.
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
