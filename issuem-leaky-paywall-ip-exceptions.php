@@ -7,7 +7,7 @@
  */
  
 /*
-Plugin Name: zeen101's Leaky Paywall - IP Exceptions
+Plugin Name: Leaky Paywall - IP Exceptions
 Plugin URI: http://zeen101.com/
 Description: A premium add-on for Leaky Paywall for WordPress.
 Author: zeen101 Development Team
@@ -34,7 +34,7 @@ define( 'LP_IPE_REL_DIR', 		dirname( LP_IPE_BASENAME ) );
  *
  * @since 1.0.0
  */
-function issuem_leaky_paywall_ip_exceptions_plugins_loaded() {
+function leaky_paywall_ip_exceptions_plugins_loaded() {
 	
 	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 	if ( is_plugin_active( 'issuem/issuem.php' ) )
@@ -47,9 +47,9 @@ function issuem_leaky_paywall_ip_exceptions_plugins_loaded() {
 	// Instantiate the Pigeon Pack class
 	if ( class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
 		
-		global $dl_pluginissuem_leaky_paywall_ip_exceptions;
+		global $leaky_paywall_ip_exceptions;
 		
-		$dl_pluginissuem_leaky_paywall_ip_exceptions = new Leaky_Paywall_IP_Exceptions();
+		$leaky_paywall_ip_exceptions = new Leaky_Paywall_IP_Exceptions();
 		
 		require_once( 'functions.php' );
 			
@@ -59,4 +59,4 @@ function issuem_leaky_paywall_ip_exceptions_plugins_loaded() {
 	}
 
 }
-add_action( 'plugins_loaded', 'issuem_leaky_paywall_ip_exceptions_plugins_loaded', 4815162342 ); //wait for the plugins to be loaded before init
+add_action( 'plugins_loaded', 'leaky_paywall_ip_exceptions_plugins_loaded', 4815162342 ); //wait for the plugins to be loaded before init

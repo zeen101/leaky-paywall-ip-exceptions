@@ -26,17 +26,17 @@ if ( ! class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
 			
 			add_action( 'wp', array( $this, 'process_requests' ), 5 );
 			
-			add_action( 'issuem_leaky_paywall_settings_form', array( $this, 'settings_div' ) );
-			add_action( 'issuem_leaky_paywall_update_settings', array( $this, 'update_settings_div' ) );
+			add_action( 'leaky_paywall_settings_form', array( $this, 'settings_div' ) );
+			add_action( 'leaky_paywall_update_settings', array( $this, 'update_settings_div' ) );
 			
 		}
 		
 		function process_requests() {
 			
-			global $dl_pluginissuem_leaky_paywall;
+			global $leaky_paywall;
 			
 			$settings = $this->get_settings();
-			$ip_address = issuem_leaky_paywall_get_ip_address();
+			$ip_address = leaky_paywall_get_ip_address();
 			$ip_address_long = (float)sprintf( "%u", ip2long( $ip_address ) );
 			
 			$allowed_ips = explode( "\n", $settings['allowed_ip_addresses'] );
@@ -44,14 +44,14 @@ if ( ! class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
 			foreach( $allowed_ips as $ip ) {
 				$ip = trim( $ip );
 				if ( $ip === $ip_address ) {
-					remove_action( 'wp', array( $dl_pluginissuem_leaky_paywall, 'process_requests' ) );
+					remove_action( 'wp', array( $leaky_paywall, 'process_requests' ) );
 					return;
 				}	
 				if ( false !== strpos( $ip, '*' ) ) {
 					$start = (float)sprintf( "%u", ip2long( str_replace( '*', '0', $ip ) ) );
 					$end = (float)sprintf( "%u", ip2long( str_replace( '*', '254', $ip ) ) );
 					if ( $ip_address_long >= $start && $ip_address_long <= $end ) {
-						remove_action( 'wp', array( $dl_pluginissuem_leaky_paywall, 'process_requests' ) );
+						remove_action( 'wp', array( $leaky_paywall, 'process_requests' ) );
 						return;
 					}
 				}
@@ -59,7 +59,7 @@ if ( ! class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
 					$start = (float)sprintf( "%u", ip2long( str_ireplace( 'x', '0', $ip ) ) );
 					$end = (float)sprintf( "%u", ip2long( str_ireplace( 'x', '254', $ip ) ) );
 					if ( $ip_address_long >= $start && $ip_address_long <= $end ) {
-						remove_action( 'wp', array( $dl_pluginissuem_leaky_paywall, 'process_requests' ) );
+						remove_action( 'wp', array( $leaky_paywall, 'process_requests' ) );
 						return;
 					}
 				}
@@ -68,7 +68,7 @@ if ( ! class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
 					$start = (float)sprintf( "%u", ip2long( $start ) );
 					$end = (float)sprintf( "%u", ip2long( $end ) );
 					if ( $ip_address_long >= $start && $ip_address_long <= $end ) {
-						remove_action( 'wp', array( $dl_pluginissuem_leaky_paywall, 'process_requests' ) );
+						remove_action( 'wp', array( $leaky_paywall, 'process_requests' ) );
 						return;
 					}
 				}
@@ -78,7 +78,7 @@ if ( ! class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
 					$mask = ~( ( 1 << ( 32 - $mask ) ) - 1 );
 					$ip_net = $ip_address_long & $mask;
 					if ( $ip_net === $net ) {
-						remove_action( 'wp', array( $dl_pluginissuem_leaky_paywall, 'process_requests' ) );
+						remove_action( 'wp', array( $leaky_paywall, 'process_requests' ) );
 						return;
 					}
 				}
@@ -97,7 +97,7 @@ if ( ! class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
 				'allowed_ip_addresses' => '',
 			);
 		
-			$defaults = apply_filters( 'issuem_leaky_paywall_ip_exceptions_default_settings', $defaults );
+			$defaults = apply_filters( 'leaky_paywall_ip_exceptions_default_settings', $defaults );
 			
 			$settings = get_option( 'issuem-leaky-paywall-ip-exceptions' );
 												
@@ -136,7 +136,7 @@ if ( ! class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
                 
                 <div class="inside">
                 
-                <table id="issuem_leaky_paywall_ip_exceptions">
+                <table id="leaky_paywall_ip_exceptions">
                 
                     <tr>
                         <th><?php _e( 'Allowed IP Addresses', 'issuem-lp-ipe' ); ?></th>
@@ -149,7 +149,7 @@ if ( ! class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
                 </table>
                                                                   
                 <p class="submit">
-                    <input class="button-primary" type="submit" name="update_issuem_leaky_paywall_settings" value="<?php _e( 'Save Settings', 'issuem-lp-ipe' ) ?>" />
+                    <input class="button-primary" type="submit" name="update_leaky_paywall_settings" value="<?php _e( 'Save Settings', 'issuem-lp-ipe' ) ?>" />
                 </p>
 
                 </div>

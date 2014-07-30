@@ -4,9 +4,9 @@
  * @since 1.0.0
  */
  
-if ( !function_exists( 'issuem_leaky_paywall_get_ip_address' ) ) {
+if ( !function_exists( 'leaky_paywall_get_ip_address' ) ) {
 		
-	function issuem_leaky_paywall_get_ip_address() {
+	function leaky_paywall_get_ip_address() {
 	
 		$methods = array(
 						'HTTP_CLIENT_IP',
