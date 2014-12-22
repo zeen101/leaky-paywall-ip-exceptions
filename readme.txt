@@ -2,7 +2,7 @@
 Contributors: layotte, peterericson
 Tags: ip address, exceptions, news, magazine, paywall, metered, university, corporate, access
 Requires at least: 3.0
-Tested up to: 3.9
+Tested up to: 4.1 
 Stable tag: 1.0.1
 
 Allow IP addresses to access content through zeen101's Leaky Paywall. More info at http://zeen101.com
