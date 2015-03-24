@@ -7,37 +7,37 @@
 if ( !function_exists( 'leaky_paywall_get_ip_address' ) ) {
 		
 	function leaky_paywall_get_ip_address() {
-	
-		$methods = array(
-						'HTTP_CLIENT_IP',
-						'HTTP_X_FORWARDED_FOR',
-						'HTTP_X_FORWARDED',
-						'HTTP_X_CLUSTER_CLIENT_IP',
-						'HTTP_FORWARDED_FOR',
-						'HTTP_FORWARDED',
-						'REMOTE_ADDR'
-					);
-	
-		foreach ( $methods as $key ) {
-	
-			if ( true === array_key_exists( $key, $_SERVER ) ) {
-	
-				foreach ( explode( ',', $_SERVER[$key] ) as $ip ) {
-	
-					$ip = trim( $ip ); // just to be safe
-	
-					if ( strrpos( $ip, ':' ) )
-						$ip = substr( $ip, strrpos( $ip, ':' ) + 1 );
-	
-					if ( filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 ) !== false )
-						return $ip;
-	
-				}
-	
-			}
-	
+		//Just get the headers if we can or else use the SERVER global
+		if ( function_exists( 'apache_request_headers' ) ) {
+			$headers = apache_request_headers();
+		} else {
+			$headers = $_SERVER;
 		}
-	
+		
+		//Get the forwarded IP if it exists
+		if ( array_key_exists( 'X-Forwarded-For', $headers ) &&
+			(
+				filter_var( $headers['X-Forwarded-For'], FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 ) ||
+				filter_var( $headers['X-Forwarded-For'], FILTER_VALIDATE_IP, FILTER_FLAG_IPV6 ) )
+			) {
+				$the_ip = $headers['X-Forwarded-For'];
+		} elseif (
+			array_key_exists( 'HTTP_X_FORWARDED_FOR', $headers ) &&
+			(
+				filter_var( $headers['HTTP_X_FORWARDED_FOR'], FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 ) ||
+				filter_var( $headers['HTTP_X_FORWARDED_FOR'], FILTER_VALIDATE_IP, FILTER_FLAG_IPV6 )
+			)
+			) {
+			$the_ip = $headers['HTTP_X_FORWARDED_FOR'];
+		} else {
+			$the_ip = $_SERVER['REMOTE_ADDR'];
+		}
+		
+		if ( preg_match( '((\d+)\.(\d+)\.(\d+)\.(\d+)$)', $the_ip, $matches ) ) {
+			return $matches[0];
+		}
+		
+		return esc_sql( $the_ip );	
 	}
 
 }
