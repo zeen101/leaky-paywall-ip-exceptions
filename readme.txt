@@ -5,7 +5,7 @@ Requires at least: 3.0
 Tested up to: 4.1 
 Stable tag: 1.0.1
 
-Allow IP addresses to access content through zeen101's Leaky Paywall. More info at http://zeen101.com
+Allow <a href="https://zeen101.com/leakypaywall/">Leaky Paywall</a>IP addresses to access content through zeen101's Leaky Paywall. <a href="https://zeen101.com/downloads/ip-exceptions-free/">More info here</a>
 
 == Description ==
 
