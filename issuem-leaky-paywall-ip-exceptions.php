@@ -37,26 +37,35 @@ define( 'LP_IPE_REL_DIR', 		dirname( LP_IPE_BASENAME ) );
 function leaky_paywall_ip_exceptions_plugins_loaded() {
 	
 	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-	if ( is_plugin_active( 'issuem/issuem.php' ) )
-		define( 'ACTIVE_LP_IPE', true );
-	else
-		define( 'ACTIVE_LP_IPE', false );
 
 	require_once( 'class.php' );
 
-	// Instantiate the Pigeon Pack class
-	if ( class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
-		
-		global $leaky_paywall_ip_exceptions;
-		
-		$leaky_paywall_ip_exceptions = new Leaky_Paywall_IP_Exceptions();
-		
-		require_once( 'functions.php' );
+	if ( is_plugin_active( 'issuem-leaky-paywall/issuem-leaky-paywall.php' ) 
+		|| is_plugin_active( 'leaky-paywall/leaky-paywall.php' ) ) {
+		// Instantiate the Pigeon Pack class
+		if ( class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
 			
-		//Internationalization
-		load_plugin_textdomain( 'issuem-lp-ipe', false, LP_IPE_REL_DIR . '/i18n/' );
+			global $leaky_paywall_ip_exceptions;
 			
+			$leaky_paywall_ip_exceptions = new Leaky_Paywall_IP_Exceptions();
+			
+			require_once( 'functions.php' );
+				
+			//Internationalization
+			load_plugin_textdomain( 'issuem-lp-ipe', false, LP_IPE_REL_DIR . '/i18n/' );
+				
+		}
+	} else {
+		add_action( 'admin_notices', 'leaky_paywall_ip_exceptions_requirement_nag' );
 	}
 
 }
 add_action( 'plugins_loaded', 'leaky_paywall_ip_exceptions_plugins_loaded', 4815162342 ); //wait for the plugins to be loaded before init
+
+function leaky_paywall_ip_exceptions_requirement_nag() {
+	?>
+	<div id="leaky-paywall-requirement-nag" class="update-nag">
+		<?php _e( 'You must have the Leaky Paywall plugin activated to use the Leaky Paywall IP Exceptions plugin.' ); ?>
+	</div>
+	<?php
+}
