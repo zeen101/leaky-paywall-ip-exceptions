@@ -26,7 +26,7 @@ if ( ! class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
 			
 			add_action( 'wp', array( $this, 'process_requests' ), 5 );
 			
-			add_action( 'leaky_paywall_settings_form', array( $this, 'settings_div' ) );
+			add_action( 'leaky_paywall_after_subscriptions_settings', array( $this, 'settings_div' ) );
 			add_action( 'leaky_paywall_update_settings', array( $this, 'update_settings_div' ) );
 			
 		}
@@ -132,7 +132,7 @@ if ( ! class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
             
                 <div class="handlediv" title="Click to toggle"><br /></div>
                 
-                <h3 class="hndle"><span><?php _e( 'Leaky Paywall - IP Exceptions', 'issuem-lp-ipe' ); ?></span></h3>
+                <h3 class="hndle"><span><?php _e( 'IP Exceptions', 'issuem-lp-ipe' ); ?></span></h3>
                 
                 <div class="inside">
                 
@@ -148,10 +148,6 @@ if ( ! class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
                     
                 </table>
                                                                   
-                <p class="submit">
-                    <input class="button-primary" type="submit" name="update_leaky_paywall_settings" value="<?php _e( 'Save Settings', 'issuem-lp-ipe' ) ?>" />
-                </p>
-
                 </div>
                 
             </div>

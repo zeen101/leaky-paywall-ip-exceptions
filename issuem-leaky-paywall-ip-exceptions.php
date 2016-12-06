@@ -11,7 +11,7 @@ Plugin Name: Leaky Paywall - IP Exceptions
 Plugin URI: http://zeen101.com/
 Description: A premium add-on for Leaky Paywall for WordPress.
 Author: zeen101 Development Team
-Version: 1.1.0
+Version: 1.2.0
 Author URI: http://zeen101.com/
 Tags:
 */
@@ -22,7 +22,7 @@ if ( !defined( 'ZEEN101_STORE_URL' ) )
 	
 define( 'LP_IPE_NAME', 			'Leaky Paywall - IP Exceptions' );
 define( 'LP_IPE_SLUG', 			'leaky-paywall-ip-exceptions' );
-define( 'LP_IPE_VERSION', 		'1.1.0' );
+define( 'LP_IPE_VERSION', 		'1.2.0' );
 define( 'LP_IPE_DB_VERSION', 	'1.0.0' );
 define( 'LP_IPE_URL', 			plugin_dir_url( __FILE__ ) );
 define( 'LP_IPE_PATH', 			plugin_dir_path( __FILE__ ) );
