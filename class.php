@@ -27,8 +27,6 @@ if ( ! class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
 			add_action( 'wp', array( $this, 'process_requests' ), 5 );
 			
 			add_action( 'leaky_paywall_after_subscriptions_settings', array( $this, 'settings_div' ) );
-			// add_action( 'leaky_paywall_update_settings', array( $this, 'update_settings_div' ) );
-
 			add_filter( 'leaky_paywall_update_settings_settings', array( $this, 'update_settings_div' ), 10, 2 );
 			
 		}
