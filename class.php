@@ -27,7 +27,9 @@ if ( ! class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
 			add_action( 'wp', array( $this, 'process_requests' ), 5 );
 			
 			add_action( 'leaky_paywall_after_subscriptions_settings', array( $this, 'settings_div' ) );
-			add_action( 'leaky_paywall_update_settings', array( $this, 'update_settings_div' ) );
+			// add_action( 'leaky_paywall_update_settings', array( $this, 'update_settings_div' ) );
+
+			add_filter( 'leaky_paywall_update_settings_settings', array( $this, 'update_settings_div' ), 10, 2 );
 			
 		}
 		
@@ -136,7 +138,7 @@ if ( ! class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
                 
                 <div class="inside">
                 
-                <table id="leaky_paywall_ip_exceptions">
+                <table id="leaky_paywall_ip_exceptions" class="form-table">
                 
                     <tr>
                         <th><?php _e( 'Allowed IP Addresses', 'issuem-lp-ipe' ); ?></th>
@@ -155,17 +157,23 @@ if ( ! class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
 			
 		}
 		
-		function update_settings_div() {
-		
+		function update_settings_div($settings, $current_tab) {
+			
+			if ( $current_tab !== 'subscriptions' ) {
+				return $settings;
+			}
+
 			// Get the user options
-			$settings = $this->get_settings();
+			$ip_settings = $this->get_settings();
 				
 			if ( !empty( $_REQUEST['allowed_ip_addresses'] ) )
-				$settings['allowed_ip_addresses'] = str_replace( ',', "\n", trim( $_REQUEST['allowed_ip_addresses'] ) );
+				$ip_settings['allowed_ip_addresses'] = str_replace( ',', "\n", trim( $_REQUEST['allowed_ip_addresses'] ) );
 			else
-				$settings['allowed_ip_addresses'] = '';
+				$ip_settings['allowed_ip_addresses'] = '';
 			
-			$this->update_settings( $settings );
+			$this->update_settings( $ip_settings );
+
+			return $settings;
 			
 		}
 		
