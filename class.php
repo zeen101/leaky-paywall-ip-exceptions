@@ -48,16 +48,16 @@ if ( ! class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
 					return;
 				}	
 				if ( false !== strpos( $ip, '*' ) ) {
-					$start = (float)sprintf( "%u", ip2long( str_replace( '*', '0', $ip ) ) );
-					$end = (float)sprintf( "%u", ip2long( str_replace( '*', '254', $ip ) ) );
+					$start = (float)sprintf( "%u", ip2long( trim( str_replace( '*', '0', $ip ) ) ) );
+					$end = (float)sprintf( "%u", ip2long( trim( str_replace( '*', '255', $ip ) ) ) );
 					if ( $ip_address_long >= $start && $ip_address_long <= $end ) {
 						remove_action( 'wp', array( $leaky_paywall, 'process_requests' ) );
 						return;
 					}
 				}
 				if ( false !== stripos( $ip, 'x' ) ) {
-					$start = (float)sprintf( "%u", ip2long( str_ireplace( 'x', '0', $ip ) ) );
-					$end = (float)sprintf( "%u", ip2long( str_ireplace( 'x', '254', $ip ) ) );
+					$start = (float)sprintf( "%u", ip2long( trim( str_ireplace( 'x', '0', $ip ) ) ) );
+					$end = (float)sprintf( "%u", ip2long( trim( str_ireplace( 'x', '255', $ip ) ) ) );
 					if ( $ip_address_long >= $start && $ip_address_long <= $end ) {
 						remove_action( 'wp', array( $leaky_paywall, 'process_requests' ) );
 						return;
@@ -65,8 +65,8 @@ if ( ! class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
 				}
 				if ( false !== stripos( $ip, '-' ) ) {
 					list( $start, $end ) = explode( '-', $ip, 2 );
-					$start = (float)sprintf( "%u", ip2long( $start ) );
-					$end = (float)sprintf( "%u", ip2long( $end ) );
+					$start = (float)sprintf( "%u", ip2long( trim( $start ) ) );
+					$end = (float)sprintf( "%u", ip2long( trim( $end ) ) );
 					if ( $ip_address_long >= $start && $ip_address_long <= $end ) {
 						remove_action( 'wp', array( $leaky_paywall, 'process_requests' ) );
 						return;
@@ -74,8 +74,8 @@ if ( ! class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
 				}
 				if ( false !== strpos( $ip, '/' ) ) {
 					list( $net, $mask ) = explode( '/', $ip, 2 );
-					$net = ip2long( $net );
-					$mask = ~( ( 1 << ( 32 - $mask ) ) - 1 );
+					$net = ip2long( trim( $net ) );
+					$mask = ~( ( 1 << ( 32 - trim( $mask ) ) ) - 1 );
 					$ip_net = $ip_address_long & $mask;
 					if ( $ip_net === $net ) {
 						remove_action( 'wp', array( $leaky_paywall, 'process_requests' ) );
@@ -142,7 +142,7 @@ if ( ! class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
                         <th><?php _e( 'Allowed IP Addresses', 'issuem-lp-ipe' ); ?></th>
                         <td>
                         <textarea id="allowed_ip_addresses" class="regular-text code" cols="50" rows="10" name="allowed_ip_addresses"><?php echo $settings['allowed_ip_addresses']; ?></textarea>
-                        <p class="description"><?php printf( __( 'Examples: %s', 'issuem-lp-ipe' ), '<br />192.168.0.0<br />192.168.0.0-192.168.0-192.168.0.254<br />192.168.0.*<br />192.168.0.x<br />192.168.0.0/24' ); ?></p>
+                        <p class="description"><?php printf( __( 'Examples: %s', 'issuem-lp-ipe' ), '<br />192.168.0.0<br />192.168.0.0-192.168.0.255<br />192.168.0.*<br />192.168.0.x<br />192.168.0.0/24' ); ?></p>
                         </td>
                     </tr>
                     
