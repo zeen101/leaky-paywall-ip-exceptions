@@ -45,6 +45,7 @@ if ( ! class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
 				$ip = trim( $ip );
 				if ( $ip === $ip_address ) {
 					remove_action( 'wp', array( $leaky_paywall, 'process_requests' ) );
+					remove_action( 'wp', array( $leaky_paywall, 'process_content_restrictions' ) );
 					return;
 				}	
 				if ( false !== strpos( $ip, '*' ) ) {
@@ -52,6 +53,7 @@ if ( ! class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
 					$end = (float)sprintf( "%u", ip2long( trim( str_replace( '*', '255', $ip ) ) ) );
 					if ( $ip_address_long >= $start && $ip_address_long <= $end ) {
 						remove_action( 'wp', array( $leaky_paywall, 'process_requests' ) );
+						remove_action( 'wp', array( $leaky_paywall, 'process_content_restrictions' ) );
 						return;
 					}
 				}
@@ -60,6 +62,7 @@ if ( ! class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
 					$end = (float)sprintf( "%u", ip2long( trim( str_ireplace( 'x', '255', $ip ) ) ) );
 					if ( $ip_address_long >= $start && $ip_address_long <= $end ) {
 						remove_action( 'wp', array( $leaky_paywall, 'process_requests' ) );
+						remove_action( 'wp', array( $leaky_paywall, 'process_content_restrictions' ) );
 						return;
 					}
 				}
@@ -69,6 +72,7 @@ if ( ! class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
 					$end = (float)sprintf( "%u", ip2long( trim( $end ) ) );
 					if ( $ip_address_long >= $start && $ip_address_long <= $end ) {
 						remove_action( 'wp', array( $leaky_paywall, 'process_requests' ) );
+						remove_action( 'wp', array( $leaky_paywall, 'process_content_restrictions' ) );
 						return;
 					}
 				}
@@ -79,6 +83,7 @@ if ( ! class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
 					$ip_net = $ip_address_long & $mask;
 					if ( $ip_net === $net ) {
 						remove_action( 'wp', array( $leaky_paywall, 'process_requests' ) );
+						remove_action( 'wp', array( $leaky_paywall, 'process_content_restrictions' ) );
 						return;
 					}
 				}
