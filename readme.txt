@@ -2,16 +2,16 @@
 Contributors: layotte, peterericson, endocreative
 Tags: ip address, exceptions, news, magazine, paywall, metered, university, corporate, access
 Requires at least: 3.0
-Tested up to: 4.8.0
+Tested up to: 4.9.3
 Stable tag: 1.4.1
 
-Allow <a href="https://zeen101.com/leakypaywall/">Leaky Paywall</a>IP addresses to access content through zeen101's Leaky Paywall. <a href="https://zeen101.com/downloads/ip-exceptions/">More info here</a>
+Allow <a href="https://zeen101.com/for-developers/leakypaywall/">Leaky Paywall</a>IP addresses to access content through zeen101's Leaky Paywall. <a href="https://zeen101.com/downloads/ip-exceptions/">More info here</a>
 
 == Description ==
 
 Allows publishers to add IP address ranges to zeen101's Leaky Paywall. The IP addresses will allow visitors from those IP's to view articles and posts without having to subscribe.
 Perfect for giving universities or corporate customers and easy way to give access to you publication.
-More info at http://zeen101.com
+More info at https://zeen101.com
 
 You can follow this plugins development on [GitHub](https://github.com/zeen101/leaky-paywall-ip-exceptions)
 
@@ -28,13 +28,17 @@ You must have:
 
 * WordPress 3.3 or later
 * PHP 5
-* zeen101's Leaky Paywall version 1.1.0 or later
+* zeen101's Leaky Paywall version 4.10.3 or later
 
 = How is Leaky Paywall - IP Exceptions Licensed? =
 
 * Leaky Paywall - IP Exceptions Addon is GPL
 
 == Changelog ==
+
+= 1.4.1 =
+* Add updater class
+* Fixed issue with compatibility with new restrictions class
 
 = 1.4.0 =
 * Fixed issue when people put a space in their ranges
