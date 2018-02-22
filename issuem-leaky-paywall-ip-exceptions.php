@@ -11,7 +11,7 @@ Plugin Name: Leaky Paywall - IP Exceptions
 Plugin URI: http://zeen101.com/
 Description: Allow visitors from specified IP addresses to view articles and posts without having to subscribe.
 Author: zeen101 Development Team
-Version: 1.4.0
+Version: 1.4.1
 Author URI: http://zeen101.com/
 Tags:
 */
@@ -22,7 +22,7 @@ if ( !defined( 'ZEEN101_STORE_URL' ) )
 	
 define( 'LP_IPE_NAME', 			'Leaky Paywall - IP Exceptions' );
 define( 'LP_IPE_SLUG', 			'leaky-paywall-ip-exceptions' );
-define( 'LP_IPE_VERSION', 		'1.4.0' );
+define( 'LP_IPE_VERSION', 		'1.4.1' );
 define( 'LP_IPE_DB_VERSION', 	'1.0.0' );
 define( 'LP_IPE_URL', 			plugin_dir_url( __FILE__ ) );
 define( 'LP_IPE_PATH', 			plugin_dir_path( __FILE__ ) );
@@ -42,7 +42,7 @@ function leaky_paywall_ip_exceptions_plugins_loaded() {
 
 	if ( is_plugin_active( 'issuem-leaky-paywall/issuem-leaky-paywall.php' ) 
 		|| is_plugin_active( 'leaky-paywall/leaky-paywall.php' ) ) {
-		// Instantiate the Pigeon Pack class
+		
 		if ( class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
 			
 			global $leaky_paywall_ip_exceptions;
@@ -53,14 +53,31 @@ function leaky_paywall_ip_exceptions_plugins_loaded() {
 				
 			//Internationalization
 			load_plugin_textdomain( 'issuem-lp-ipe', false, LP_IPE_REL_DIR . '/i18n/' );
-				
+
 		}
+
+		// Upgrade function based on EDD updater class
+		if( !class_exists( 'EDD_SL_Plugin_Updater' ) ) {
+			include( dirname( __FILE__ ) . '/include/EDD_SL_Plugin_Updater.php' );
+		} 
+
+		$license = new Leaky_Paywall_License_Key( LP_IPE_SLUG, LP_IPE_NAME );
+
+		$settings = $license->get_settings();
+		$license_key = trim( $settings['license_key'] );
+		$edd_updater = new EDD_SL_Plugin_Updater( ZEEN101_STORE_URL, __FILE__, array(
+			'version' 	=> LP_IPE_VERSION, // current version number
+			'license' 	=> $license_key,	
+			'item_name' => LP_IPE_NAME,	
+			'author' 	=> 'Zeen101 Development Team'
+		) );
+
 	} else {
 		add_action( 'admin_notices', 'leaky_paywall_ip_exceptions_requirement_nag' );
 	}
 
 }
-add_action( 'plugins_loaded', 'leaky_paywall_ip_exceptions_plugins_loaded', 4815162342 ); //wait for the plugins to be loaded before init
+add_action( 'plugins_loaded', 'leaky_paywall_ip_exceptions_plugins_loaded', 4815162344 ); //wait for the plugins to be loaded before init
 
 function leaky_paywall_ip_exceptions_requirement_nag() {
 	?>
