@@ -42,6 +42,56 @@ if ( !function_exists( 'leaky_paywall_get_ip_address' ) ) {
 
 }
 
+function leaky_paywall_ip_allows_access() {
+
+	$settings = get_option( 'issuem-leaky-paywall-ip-exceptions' );
+	$ip_address = leaky_paywall_get_ip_address();
+	$ip_address_long = (float)sprintf( "%u", ip2long( $ip_address ) );
+	
+	$allowed_ips = explode( "\n", $settings['allowed_ip_addresses'] );
+
+	foreach( $allowed_ips as $ip ) {
+		$ip = trim( $ip );
+		if ( $ip === $ip_address ) {
+			return true;
+		}	
+		if ( false !== strpos( $ip, '*' ) ) {
+			$start = (float)sprintf( "%u", ip2long( trim( str_replace( '*', '0', $ip ) ) ) );
+			$end = (float)sprintf( "%u", ip2long( trim( str_replace( '*', '255', $ip ) ) ) );
+			if ( $ip_address_long >= $start && $ip_address_long <= $end ) {
+				return true;
+			}
+		}
+		if ( false !== stripos( $ip, 'x' ) ) {
+			$start = (float)sprintf( "%u", ip2long( trim( str_ireplace( 'x', '0', $ip ) ) ) );
+			$end = (float)sprintf( "%u", ip2long( trim( str_ireplace( 'x', '255', $ip ) ) ) );
+			if ( $ip_address_long >= $start && $ip_address_long <= $end ) {
+				return true;
+			}
+		}
+		if ( false !== stripos( $ip, '-' ) ) {
+			list( $start, $end ) = explode( '-', $ip, 2 );
+			$start = (float)sprintf( "%u", ip2long( trim( $start ) ) );
+			$end = (float)sprintf( "%u", ip2long( trim( $end ) ) );
+			if ( $ip_address_long >= $start && $ip_address_long <= $end ) {
+				return true;
+			}
+		}
+		if ( false !== strpos( $ip, '/' ) ) {
+			list( $net, $mask ) = explode( '/', $ip, 2 );
+			$net = ip2long( trim( $net ) );
+			$mask = ~( ( 1 << ( 32 - trim( $mask ) ) ) - 1 );
+			$ip_net = $ip_address_long & $mask;
+			if ( $ip_net === $net ) {
+				return true;
+			}
+		}
+	}
+
+	return false;
+	
+}
+
 if ( !function_exists( 'wp_print_r' ) ) { 
 
 	/**

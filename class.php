@@ -40,13 +40,22 @@ if ( ! class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
 			$ip_address_long = (float)sprintf( "%u", ip2long( $ip_address ) );
 			
 			$allowed_ips = explode( "\n", $settings['allowed_ip_addresses'] );
+
+			if ( leaky_paywall_ip_allows_access() ) {
+				remove_action( 'wp', array( $leaky_paywall, 'process_requests' ) );
+				remove_action( 'wp', array( $leaky_paywall, 'process_content_restrictions' ) );
+				add_filter( 'leaky_paywall_filter_is_restricted', '__return_false', 10, 2 );
+				return;
+			}
 			
+			/*
 			foreach( $allowed_ips as $ip ) {
 				$ip = trim( $ip );
 				if ( $ip === $ip_address ) {
 					remove_action( 'wp', array( $leaky_paywall, 'process_requests' ) );
 					remove_action( 'wp', array( $leaky_paywall, 'process_content_restrictions' ) );
-					return;
+					add_filter( 'leaky_paywall_filter_is_restricted', '__return_false', 10, 2 );
+					return true;
 				}	
 				if ( false !== strpos( $ip, '*' ) ) {
 					$start = (float)sprintf( "%u", ip2long( trim( str_replace( '*', '0', $ip ) ) ) );
@@ -54,7 +63,8 @@ if ( ! class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
 					if ( $ip_address_long >= $start && $ip_address_long <= $end ) {
 						remove_action( 'wp', array( $leaky_paywall, 'process_requests' ) );
 						remove_action( 'wp', array( $leaky_paywall, 'process_content_restrictions' ) );
-						return;
+						add_filter( 'leaky_paywall_filter_is_restricted', '__return_false', 10, 2 );
+						return true;
 					}
 				}
 				if ( false !== stripos( $ip, 'x' ) ) {
@@ -63,7 +73,8 @@ if ( ! class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
 					if ( $ip_address_long >= $start && $ip_address_long <= $end ) {
 						remove_action( 'wp', array( $leaky_paywall, 'process_requests' ) );
 						remove_action( 'wp', array( $leaky_paywall, 'process_content_restrictions' ) );
-						return;
+						add_filter( 'leaky_paywall_filter_is_restricted', '__return_false', 10, 2 );
+						return true;
 					}
 				}
 				if ( false !== stripos( $ip, '-' ) ) {
@@ -73,7 +84,8 @@ if ( ! class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
 					if ( $ip_address_long >= $start && $ip_address_long <= $end ) {
 						remove_action( 'wp', array( $leaky_paywall, 'process_requests' ) );
 						remove_action( 'wp', array( $leaky_paywall, 'process_content_restrictions' ) );
-						return;
+						add_filter( 'leaky_paywall_filter_is_restricted', '__return_false', 10, 2 );
+						return true;
 					}
 				}
 				if ( false !== strpos( $ip, '/' ) ) {
@@ -84,11 +96,64 @@ if ( ! class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
 					if ( $ip_net === $net ) {
 						remove_action( 'wp', array( $leaky_paywall, 'process_requests' ) );
 						remove_action( 'wp', array( $leaky_paywall, 'process_content_restrictions' ) );
-						return;
+						add_filter( 'leaky_paywall_filter_is_restricted', '__return_false', 10, 2 );
+						return true;
 					}
 				}
 			}
+			*/
 			
+		}
+
+		public function ip_allows_access() 
+		{
+			
+			$settings = $this->get_settings();
+			$ip_address = leaky_paywall_get_ip_address();
+			$ip_address_long = (float)sprintf( "%u", ip2long( $ip_address ) );
+			
+			$allowed_ips = explode( "\n", $settings['allowed_ip_addresses'] );
+
+			foreach( $allowed_ips as $ip ) {
+				$ip = trim( $ip );
+				if ( $ip === $ip_address ) {
+					return true;
+				}	
+				if ( false !== strpos( $ip, '*' ) ) {
+					$start = (float)sprintf( "%u", ip2long( trim( str_replace( '*', '0', $ip ) ) ) );
+					$end = (float)sprintf( "%u", ip2long( trim( str_replace( '*', '255', $ip ) ) ) );
+					if ( $ip_address_long >= $start && $ip_address_long <= $end ) {
+						return true;
+					}
+				}
+				if ( false !== stripos( $ip, 'x' ) ) {
+					$start = (float)sprintf( "%u", ip2long( trim( str_ireplace( 'x', '0', $ip ) ) ) );
+					$end = (float)sprintf( "%u", ip2long( trim( str_ireplace( 'x', '255', $ip ) ) ) );
+					if ( $ip_address_long >= $start && $ip_address_long <= $end ) {
+						return true;
+					}
+				}
+				if ( false !== stripos( $ip, '-' ) ) {
+					list( $start, $end ) = explode( '-', $ip, 2 );
+					$start = (float)sprintf( "%u", ip2long( trim( $start ) ) );
+					$end = (float)sprintf( "%u", ip2long( trim( $end ) ) );
+					if ( $ip_address_long >= $start && $ip_address_long <= $end ) {
+						return true;
+					}
+				}
+				if ( false !== strpos( $ip, '/' ) ) {
+					list( $net, $mask ) = explode( '/', $ip, 2 );
+					$net = ip2long( trim( $net ) );
+					$mask = ~( ( 1 << ( 32 - trim( $mask ) ) ) - 1 );
+					$ip_net = $ip_address_long & $mask;
+					if ( $ip_net === $net ) {
+						return true;
+					}
+				}
+			}
+
+			return false;
+
 		}
 		
 		/**
