@@ -46,6 +46,7 @@ if ( ! class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
 				if ( $ip === $ip_address ) {
 					remove_action( 'wp', array( $leaky_paywall, 'process_requests' ) );
 					remove_action( 'wp', array( $leaky_paywall, 'process_content_restrictions' ) );
+					remove_action( 'init', array( $leaky_paywall, 'process_js_restrictions' ) );
 					return;
 				}	
 				if ( false !== strpos( $ip, '*' ) ) {
@@ -54,6 +55,7 @@ if ( ! class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
 					if ( $ip_address_long >= $start && $ip_address_long <= $end ) {
 						remove_action( 'wp', array( $leaky_paywall, 'process_requests' ) );
 						remove_action( 'wp', array( $leaky_paywall, 'process_content_restrictions' ) );
+						remove_action( 'init', array( $leaky_paywall, 'process_js_restrictions' ) );
 						return;
 					}
 				}
@@ -63,6 +65,7 @@ if ( ! class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
 					if ( $ip_address_long >= $start && $ip_address_long <= $end ) {
 						remove_action( 'wp', array( $leaky_paywall, 'process_requests' ) );
 						remove_action( 'wp', array( $leaky_paywall, 'process_content_restrictions' ) );
+						remove_action( 'init', array( $leaky_paywall, 'process_js_restrictions' ) );
 						return;
 					}
 				}
@@ -73,6 +76,7 @@ if ( ! class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
 					if ( $ip_address_long >= $start && $ip_address_long <= $end ) {
 						remove_action( 'wp', array( $leaky_paywall, 'process_requests' ) );
 						remove_action( 'wp', array( $leaky_paywall, 'process_content_restrictions' ) );
+						remove_action( 'init', array( $leaky_paywall, 'process_js_restrictions' ) );
 						return;
 					}
 				}
@@ -84,6 +88,7 @@ if ( ! class_exists( 'Leaky_Paywall_IP_Exceptions' ) ) {
 					if ( $ip_net === $net ) {
 						remove_action( 'wp', array( $leaky_paywall, 'process_requests' ) );
 						remove_action( 'wp', array( $leaky_paywall, 'process_content_restrictions' ) );
+						remove_action( 'init', array( $leaky_paywall, 'process_js_restrictions' ) );
 						return;
 					}
 				}
