@@ -1,9 +1,9 @@
 ===  Leaky Paywall - IP Exceptions ===
 Contributors: layotte, peterericson, endocreative
 Tags: ip address, exceptions, news, magazine, paywall, metered, university, corporate, access
-Requires at least: 3.0
-Tested up to: 4.9.3
-Stable tag: 1.4.1
+Requires at least: 4.6
+Tested up to: 5.1.1
+Stable tag: 1.4.2
 
 Allow <a href="https://zeen101.com/for-developers/leakypaywall/">Leaky Paywall</a>IP addresses to access content through zeen101's Leaky Paywall. <a href="https://zeen101.com/downloads/ip-exceptions/">More info here</a>
 
@@ -35,6 +35,9 @@ You must have:
 * Leaky Paywall - IP Exceptions Addon is GPL
 
 == Changelog ==
+
+= 1.4.2 =
+* Refactor ip check
 
 = 1.4.1 =
 * Add updater class
