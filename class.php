@@ -24,7 +24,7 @@ class Leaky_Paywall_IP_Exceptions {
 		$settings = $this->get_settings();
 		
 		add_filter( 'leaky_paywall_filter_is_restricted', array( $this, 'maybe_allow_access' ), 5, 3 );
-		add_action( 'leaky_paywall_after_subscriptions_settings', array( $this, 'settings_div' ) );
+		add_action( 'leaky_paywall_after_general_settings', array( $this, 'settings_div' ) );
 		add_filter( 'leaky_paywall_update_settings_settings', array( $this, 'update_settings_div' ), 10, 2 );
 		
 	}
@@ -160,7 +160,7 @@ class Leaky_Paywall_IP_Exceptions {
 	
 	function update_settings_div($settings, $current_tab) {
 		
-		if ( $current_tab !== 'subscriptions' ) {
+		if ( $current_tab !== 'general' ) {
 			return $settings;
 		}
 
