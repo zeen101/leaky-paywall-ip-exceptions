@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Main PHP file used to for initial calls to zeen101's Leaky Paywall classes and functions.
+ * Main PHP file used to for initial calls to Leaky Paywall - IP Exceptions classes and functions.
  *
  * @package Leaky Paywall - IP Exceptions
  * @since 1.0.0
@@ -54,21 +54,23 @@ function leaky_paywall_ip_exceptions_plugins_loaded()
 			$leaky_paywall_ip_exceptions = new Leaky_Paywall_IP_Exceptions();
 
 			require_once('functions.php');
+			require_once('include/admin/settings.php');
+			require_once('include/updates.php');
 
 			//Internationalization
 			load_plugin_textdomain('issuem-lp-ipe', false, LP_IPE_REL_DIR . '/i18n/');
 		}
 
 		// Upgrade function based on EDD updater class
-		if (!class_exists('EDD_SL_Plugin_Updater')) {
-			include(dirname(__FILE__) . '/include/EDD_SL_Plugin_Updater.php');
+		if (!class_exists('EDD_LP_Plugin_Updater')) {
+			include(dirname(__FILE__) . '/include/EDD_LP_Plugin_Updater.php');
 		}
 
 		$license = new Leaky_Paywall_License_Key(LP_IPE_SLUG, LP_IPE_NAME);
 
 		$settings = $license->get_settings();
 		$license_key = trim($settings['license_key']);
-		$edd_updater = new EDD_SL_Plugin_Updater(ZEEN101_STORE_URL, __FILE__, array(
+		$edd_updater = new EDD_LP_Plugin_Updater(ZEEN101_STORE_URL, __FILE__, array(
 			'version' 	=> LP_IPE_VERSION, // current version number
 			'license' 	=> $license_key,
 			'item_name' => LP_IPE_NAME,

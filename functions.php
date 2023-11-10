@@ -1,53 +1,10 @@
 <?php
 
-/**
- * @package Leaky Paywall - IP Exceptions
- * @since 1.0.0
- */
-
-function leaky_paywall_get_ip_address()
-{
-	//Just get the headers if we can or else use the SERVER global
-	if (function_exists('apache_request_headers')) {
-		$headers = apache_request_headers();
-	} else {
-		$headers = $_SERVER;
-	}
-
-	//Get the forwarded IP if it exists
-	if (
-		array_key_exists('X-Forwarded-For', $headers) &&
-		(filter_var($headers['X-Forwarded-For'], FILTER_VALIDATE_IP, FILTER_FLAG_IPV4) ||
-			filter_var($headers['X-Forwarded-For'], FILTER_VALIDATE_IP, FILTER_FLAG_IPV6))
-	) {
-		$the_ip = $headers['X-Forwarded-For'];
-	} elseif (
-		array_key_exists('HTTP_X_FORWARDED_FOR', $headers) &&
-		(filter_var($headers['HTTP_X_FORWARDED_FOR'], FILTER_VALIDATE_IP, FILTER_FLAG_IPV4) ||
-			filter_var($headers['HTTP_X_FORWARDED_FOR'], FILTER_VALIDATE_IP, FILTER_FLAG_IPV6))
-	) {
-		$the_ip = $headers['HTTP_X_FORWARDED_FOR'];
-	} else {
-		$the_ip = $_SERVER['REMOTE_ADDR'];
-	}
-
-	if (preg_match('((\d+)\.(\d+)\.(\d+)\.(\d+)$)', $the_ip, $matches)) {
-		return $matches[0];
-	}
-
-	return esc_sql($the_ip);
-}
-
-
 function leaky_paywall_ip_allows_access()
 {
 
-	// $ip_address = leaky_paywall_get_ip_address();
 	$ip_address = leaky_paywall_get_ip();
 	$ip_address_long = (float)sprintf("%u", ip2long($ip_address));
-
-	// $settings = get_option('issuem-leaky-paywall-ip-exceptions');
-	// $allowed_ips = explode("\n", $settings['allowed_ip_addresses']);
 
 	$allowed_ips = leaky_paywall_get_allowed_ips();
 
