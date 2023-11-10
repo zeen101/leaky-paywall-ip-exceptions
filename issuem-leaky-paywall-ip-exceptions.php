@@ -9,11 +9,11 @@
 
 /*
 Plugin Name: Leaky Paywall - IP Exceptions
-Plugin URI: https://zeen101.com/
+Plugin URI: https://leakypaywall.com/
 Description: Allow visitors from specified IP addresses to view articles and posts without having to subscribe.
-Author: ZEEN101
-Version: 1.4.4
-Author URI: https://zeen101.com/
+Author: Leaky Paywall
+Version: 1.5.0
+Author URI: https://leakypaywall.com/
 Tags:
 */
 
@@ -23,7 +23,7 @@ if (!defined('ZEEN101_STORE_URL'))
 
 define('LP_IPE_NAME', 			'Leaky Paywall - IP Exceptions');
 define('LP_IPE_SLUG', 			'leaky-paywall-ip-exceptions');
-define('LP_IPE_VERSION', 		'1.4.4');
+define('LP_IPE_VERSION', 		'1.5.0');
 define('LP_IPE_DB_VERSION', 	'1.0.0');
 define('LP_IPE_URL', 			plugin_dir_url(__FILE__));
 define('LP_IPE_PATH', 			plugin_dir_path(__FILE__));

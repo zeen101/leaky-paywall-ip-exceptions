@@ -1,19 +1,17 @@
 ===  Leaky Paywall - IP Exceptions ===
 Contributors: layotte, peterericson, endocreative
 Tags: ip address, exceptions, news, magazine, paywall, metered, university, corporate, access
-Requires at least: 4.6
-Tested up to: 5.3.2
-Stable tag: 1.4.4
+Requires at least: 5.6
+Tested up to: 6.4.1
+Stable tag: 1.5.0
 
-Allow <a href="https://zeen101.com/for-developers/leakypaywall/">Leaky Paywall</a>IP addresses to access content through zeen101's Leaky Paywall. <a href="https://zeen101.com/downloads/ip-exceptions/">More info here</a>
+Allow <a href="https://leakypaywall.com/">Leaky Paywall</a>IP addresses to access content through Leaky Paywall.
 
 == Description ==
 
-Allows publishers to add IP address ranges to zeen101's Leaky Paywall. The IP addresses will allow visitors from those IP's to view articles and posts without having to subscribe.
+Allows publishers to add IP address ranges to Leaky Paywall. The IP addresses will allow visitors from those IP's to view articles and posts without having to subscribe.
 Perfect for giving universities or corporate customers and easy way to give access to you publication.
-More info at https://zeen101.com
-
-You can follow this plugins development on [GitHub](https://github.com/zeen101/leaky-paywall-ip-exceptions)
+More info at https://leakypaywall.com
 
 == Installation ==
 
@@ -26,15 +24,19 @@ You can follow this plugins development on [GitHub](https://github.com/zeen101/l
 
 You must have:
 
-* WordPress 3.3 or later
-* PHP 5
-* zeen101's Leaky Paywall version 4.10.3 or later
+* WordPress 5.6 or later
+* PHP 7
+* Leaky Paywall version 4.10.3 or later
 
 = How is Leaky Paywall - IP Exceptions Licensed? =
 
 * Leaky Paywall - IP Exceptions Addon is GPL
 
 == Changelog ==
+
+= 1.5.0 =
+* Add ability for multiple ip exception groups
+* Update updater class
 
 = 1.4.4. =
 * Move settings to general tab
@@ -52,7 +54,7 @@ You must have:
 = 1.4.0 =
 * Fixed issue when people put a space in their ranges
 * Fixed issue with B class network wildcards
-* Fixed description text 
+* Fixed description text
 
 = 1.3.0 =
 * Fix settings save bug
